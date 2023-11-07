@@ -15,9 +15,14 @@ module delay #(
     my_state current_state, next_state;
 
     // counter
-    always_ff @(posedge clk)
+    always_ff @(posedge clk) begin
+        //$display("input is: " );
+        //$display(count);
+        // if(current_state == 2)
+        //     $display("timed_out");
         if (rst | trigger | count=={WIDTH{1'b0}}) count <= n - 1'b1;
         else                                count <= count - 1'b1;
+    end
 
     // state transition
     always_ff @(posedge clk)
